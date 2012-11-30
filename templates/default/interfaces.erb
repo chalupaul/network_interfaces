@@ -31,7 +31,7 @@
   <% end %>
   
   <% if @iface[:bond_slaves -%>
-     bond-slaves<% @iface[:bond_slaves].each do |bond_slave| -%> <%= bond_slave %><% end %>
+     bond-slaves <% @iface[:bond_slaves].each do |bond_slave| -%> <%= bond_slave %><% end %>
   <% end %>
   
   <% if @iface[:bond_mode] -%>

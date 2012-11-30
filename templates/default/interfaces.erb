@@ -27,11 +27,11 @@
   <% end %>
   
   <% if @iface[:bridge_ports] -%>
-     bridge_ports<% @iface[:bridge_ports].each do |port| %> <%= port %><% end %>
+     bridge_ports<% @iface[:bridge_ports].each do |port| -%> <%= port %><% end %>
   <% end %>
   
   <% if @iface[:bond_slaves -%>
-     bond-slaves<% @iface[:bond_slaves].each do |iface| %> <%= iface %><% end %>
+     bond-slaves<% @iface[:bond_slaves].each do |iface| -%> <%= iface %><% end %>
   <% end %>
   
   <% if @iface[:bond_mode] -%>

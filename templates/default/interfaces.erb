@@ -30,8 +30,8 @@
      bridge_ports<% @iface[:bridge_ports].each do |port| -%> <%= port %><% end %>
   <% end %>
   
-  <% if @iface[:bond_slaves -%>
-     bond-slaves <% @iface[:bond_slaves].each do |bond_slave| -%> <%= bond_slave %><% end %>
+  <% if @iface[:bond_slaves] -%>
+     bond-slaves<% @iface[:bond_slaves].each do |bond_slave| -%> <%= bond_slave %><% end %>
   <% end %>
   
   <% if @iface[:bond_mode] -%>
@@ -71,8 +71,7 @@
   <% end %>
   
   <% if @iface[:custom] -%>
-    <% @iface[:custom].sort_by{ |instruc, command| instruc }.each do |instruc, command| -%>
-            <%= instruc %> <%= command %>
-    <% end %>
+    <% @iface[:custom].sort_by{ |instruc, command| instruc }.each do |instruc, command| -%><%= instruc %> <%= command %><% end %>
   <% end %>
+  
 <% end %>

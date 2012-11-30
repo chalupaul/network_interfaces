@@ -44,6 +44,7 @@ template "/tmp/chef-net-iface" do
             })
 end
 
+# merge new ifaces with the old ones
 ruby_block "munge interface files" do
   block do
     File.open("/tmp/chef-net-iface", "r") do | iface |

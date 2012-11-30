@@ -17,7 +17,7 @@ Here's an example
     		"auto": "true",
     		"type": "static",
     		"device": "eth0",
-    		"netmask: "255.255.255.0",
+    		"netmask": "255.255.255.0",
     		"address": "192.168.10.10"
 		},
 		{

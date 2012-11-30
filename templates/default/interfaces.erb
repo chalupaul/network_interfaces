@@ -1,4 +1,4 @@
-<%@network_interfaces.each do |iface| -%>
+<% @network_interfaces.each do |iface| -%>
   
   <% if @iface[:auto] -%>
     auto <%= @device %>
@@ -73,5 +73,5 @@
   <% if @iface[:custom] -%>
     <% @iface[:custom].sort_by{ |instruc, command| instruc }.each do |instruc, command| -%><%= instruc %> <%= command %><% end %>
   <% end %>
-  
+
 <% end %>

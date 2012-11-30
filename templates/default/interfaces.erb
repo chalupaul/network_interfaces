@@ -1,13 +1,13 @@
 <% @network_interfaces %>
 <% @network_interfaces.each do |iface| -%>
   
-  <% if @iface[:auto] -%>
-    auto <%= @device %>
+  <% if iface[:auto] -%>
+    auto <%= iface[:device] %>
   <% end %>
 
   iface <%= @iface[:device] %> inet <%= @iface[:type] %>
   
-  <% if iface[:address] -%>
+  <% if @iface[:address] -%>
      address <%= @iface[:address] %>
   <% end %>
   

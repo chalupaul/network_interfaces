@@ -4,9 +4,7 @@
   auto <%= @device %>
   <% end %>
 
-  <% if @iface[:device] and @iface[:type] -%>
   iface <%= @iface[:device] %> inet <%= @iface[:type] %>
-  <% %end %>
   
   <% if iface[:address] -%>
      address <%= @iface[:address] %>

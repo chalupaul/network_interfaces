@@ -12,11 +12,20 @@ In the node attributes, populate the network_interfaces attribute (node['network
 Here's an example
 
 "normal": {
-    "network_interfaces": {
-        "auto": "true",
-        "type": "static",
-        "device": "eth0",
-        "netmask: "255.255.255.0",
-        "address": "192.168.10.10"
-    }
+    "network_interfaces": [
+		{
+    		"auto": "true",
+    		"type": "static",
+    		"device": "eth0",
+    		"netmask: "255.255.255.0",
+    		"address": "192.168.10.10"
+		},
+		{
+    		"auto": "true",
+    		"type": "static",
+    		"device": "eth1",
+    		"netmask: "255.255.255.0",
+    		"address": "10.0.0.2"
+		}
+    ]
 }

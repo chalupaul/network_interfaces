@@ -32,32 +32,26 @@ ruby_block "existing ifaces" do
   end
 end
 
-# hijack the template function to put out temp files
-# Then shove them into the ifaces_file_munge array and
-# delete the files. 
-node['network_interfaces'].each do |iface|
-  template "/tmp/chef-net-iface" do
-    source "interfaces.erb"
-    mode 0644
-    owner "root"
-    group "root"
-    variables({
-                :auto => iface['auto'] || true,
-                :type => iface['type'] || "static",
-                :device => iface['device'],
-                :netmask => iface['netmask'],
-                :address => iface['address']
-              })
-  end
-  ruby_block "munge interface files" do
-    block do
-      File.open("/tmp/chef-net-iface", "r") do | iface |
-        while (line = iface.gets)
-          $ifaces_file_munge << line
-        end
+# create the interfaces file for the node using
+# the interfaces template
+template "/tmp/chef-net-iface" do
+  source "interfaces.erb"
+  mode 0644
+  owner "root"
+  group "root"
+  variables({
+              :network_interfaces => node['network_interfaces']
+            })
+end
+
+ruby_block "munge interface files" do
+  block do
+    File.open("/tmp/chef-net-iface", "r") do | iface |
+      while (line = iface.gets)
+        $ifaces_file_munge << line
       end
-      File.delete("/tmp/chef-net-iface")
     end
+    File.delete("/tmp/chef-net-iface")
   end
 end
 
@@ -77,6 +71,7 @@ execute "service networking restart" do
     $iface_digest != Digest::MD5.hexdigest(File.read($ifaces_file))
   end
 end
+
 =begin
 node.network.interfaces.each do | (k,v)|
   v[:addresses].each do | (k2, v2) |
